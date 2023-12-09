@@ -14,7 +14,7 @@ Besides transcription, you can use the following voice commands:
 
 1. Clone and compile [whisper.cpp](https://github.com/ggerganov/whisper.cpp#quick-start)
 1. Start the [whisper.cpp server](https://github.com/ggerganov/whisper.cpp/tree/master/examples/server)
-   - Tip: you can download stronger models for better speech recognition. See the [ModelFusion Whisper.cpp guide for details](https://modelfusion.dev/integration/model-provider/whispercpp). On a MacBook M1, the `ggml-small-q5_0.bin` model is a decent tradeoff between accuracy and speed.
+   - Tip: you can download stronger models for better speech recognition. Usually they take longer to respond though. See the [ModelFusion Whisper.cpp guide for details](https://modelfusion.dev/integration/model-provider/whispercpp).
 1. Run `npm install`
 1. Run `npm run build`
 1. Run `npm start`
