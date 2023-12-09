@@ -23,3 +23,12 @@ Besides transcription, you can use the following voice commands:
 :::note
 There is a bug that can lead to double initialize when using `npm run dev`. You need to use `npm run build` and `npm start` instead.
 :::
+
+## Demo
+
+:::note
+Transcriptions are better than what's shown in the video if you use stronger models in whisper.cpp
+:::
+
+https://github.com/lgrammel/whisperwriter/assets/205036/8021e72b-7b88-45a2-a820-3bc3e25fbbce
+
