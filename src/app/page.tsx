@@ -20,24 +20,30 @@ export default function App() {
     onSpeechEnd: async (audio) => {
       vad.pause();
       try {
-        // Whisper.cpp can work with this format without conversions:
+        setTranscribing(true);
+
+        // Whisper.cpp can transcribe this format without additional conversions:
         const wavBuffer = utils.encodeWAV(audio, 1, 16000, 1, 16);
         const base64 = utils.arrayBufferToBase64(wavBuffer);
 
-        setTranscribing(true);
         const transcriptionResponse = await fetch("/api/transcribe", {
           method: "POST",
           body: JSON.stringify({ data: base64 }),
         });
+
         const {
           transcription,
         }: {
           transcription: string;
         } = await transcriptionResponse.json();
 
-        const type = transcription.trim().toLowerCase().startsWith("command")
+        const type = transcription.toLowerCase().startsWith("command")
           ? "command"
           : "transcription";
+
+        if (type === "transcription" && paused) {
+          return;
+        }
 
         setItems((old) => [...old, { type, text: transcription }]);
 
@@ -52,12 +58,14 @@ export default function App() {
             setItems([]);
           } else if (command === "stop") {
             setPaused(true);
+          } else if (command === "start") {
+            setPaused(false);
           }
         }
       } catch (e) {
         console.error(e);
       } finally {
-        if (!paused) vad.start();
+        vad.start();
         setTranscribing(false);
       }
     },
