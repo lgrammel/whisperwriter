@@ -6,7 +6,7 @@ import {
 
 export const runtime = "edge";
 
-setGlobalFunctionLogging("detailed-object");
+setGlobalFunctionLogging("basic-text");
 
 const whisper = whispercpp.Transcriber({
   api: whispercpp.Api({ baseUrl: "http://localhost:8080" }),

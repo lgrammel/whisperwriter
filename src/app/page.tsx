@@ -71,11 +71,6 @@ export default function App() {
     },
   });
 
-  useEffect(() => {
-    if (paused) vad.pause();
-    else vad.start();
-  }, [paused, vad]);
-
   return (
     <div className="m-8">
       <div className="bg-white p-4 shadow rounded-lg max-w-6xl mx-auto">
