@@ -1,12 +1,8 @@
-import {
-  generateTranscription,
-  setGlobalFunctionLogging,
-  whispercpp,
-} from "modelfusion";
+import { generateTranscription, modelfusion, whispercpp } from "modelfusion";
 
 export const runtime = "edge";
 
-setGlobalFunctionLogging("basic-text");
+modelfusion.setLogFormat("basic-text");
 
 const whisper = whispercpp.Transcriber({
   api: whispercpp.Api({ baseUrl: "http://localhost:8080" }),
