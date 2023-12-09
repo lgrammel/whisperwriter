@@ -1,8 +1,6 @@
-import { generateTranscription, modelfusion, whispercpp } from "modelfusion";
+import { generateTranscription, whispercpp } from "modelfusion";
 
 export const runtime = "edge";
-
-modelfusion.setLogFormat("basic-text");
 
 const whisper = whispercpp.Transcriber({
   api: whispercpp.Api({ baseUrl: "http://localhost:8080" }),
@@ -12,10 +10,11 @@ const whisper = whispercpp.Transcriber({
 export async function POST(req: Request) {
   const { data }: { data: string } = await req.json();
 
-  const transcription = await generateTranscription(whisper, {
-    type: "wav",
-    data: Buffer.from(data, "base64"),
-  });
+  const transcription = await generateTranscription(
+    whisper,
+    { type: "wav", data: Buffer.from(data, "base64") },
+    { logging: "basic-text" }
+  );
 
   return Response.json({ transcription });
 }
