@@ -15,7 +15,7 @@
     "@ricky0123/vad-react": "^0.0.19",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
-    "modelfusion": ">= 0.92.0",
+    "modelfusion": ">= 0.99.0",
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18",
