@@ -10,11 +10,11 @@ const whisper = whispercpp.Transcriber({
 export async function POST(req: Request) {
   const { data }: { data: string } = await req.json();
 
-  const transcription = await generateTranscription(
-    whisper,
-    { type: "wav", data: Buffer.from(data, "base64") },
-    { logging: "basic-text" }
-  );
+  const transcription = await generateTranscription({
+    model: whisper,
+    data: { type: "wav", data: Buffer.from(data, "base64") },
+    logging: "basic-text",
+  });
 
   return Response.json({ transcription });
 }
