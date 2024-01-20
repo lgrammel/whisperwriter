@@ -33,9 +33,11 @@ const nextConfig = {
 
     // ignore async hooks on client side:
     if (!isServer) {
-      config.plugins.push(
-        new webpack.IgnorePlugin({ resourceRegExp: /^node:async_hooks$/ })
-      );
+      config.resolve = config.resolve ?? {};
+      config.resolve.fallback = config.resolve.fallback ?? {};
+
+      // async hooks is not available in the browser:
+      config.resolve.fallback.async_hooks = false;
     }
 
     return config;
