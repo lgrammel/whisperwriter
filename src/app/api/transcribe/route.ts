@@ -12,7 +12,8 @@ export async function POST(req: Request) {
 
   const transcription = await generateTranscription({
     model: whisper,
-    data: { type: "wav", data: Buffer.from(data, "base64") },
+    mimeType: "audio/wav",
+    audioData: data,
     logging: "basic-text",
   });
 
